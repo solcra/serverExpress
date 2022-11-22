@@ -3,10 +3,20 @@ const conectarDB = require('./config/db');
 
 // Creamos el servidor
 const app = express();
+var bodyParser = require('body-parser')
+
+// Impor para poder trabajr con json
+app.use(express.json());
+
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 // Conetamos a la BD
 conectarDB();
 app.use('/api/productos', require('./routes/producto'));
+
 
 // Definimos ruta principal
 // app.get('/', (req,res)=>{
